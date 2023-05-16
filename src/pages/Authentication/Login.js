@@ -75,7 +75,7 @@ const Login = props => {
 								<div className="text-center mt-sm-5 mb-4 text-white-50">
 									<div>
 										<Link to="/" className="d-inline-block auth-logo">
-											<img src={logoLight} alt="" height="20" />
+											<img src={logoLight} alt="" width="100" />
 										</Link>
 									</div>
 									<p className="mt-3 fs-15 fw-medium">GAP Finance Admin</p>
