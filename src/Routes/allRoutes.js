@@ -1,35 +1,84 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 
 //Pages
-import DashboardEcommerce from '../pages/DashboardEcommerce';
+const DashboardEcommerce = lazy(() => import('../pages/DashboardEcommerce'));
 
-import Roles from '../pages/Roles/Roles';
+const Roles = lazy(() => import('../pages/Roles/Roles'));
 
-import Users from '../pages/Users/Users';
+const Users = lazy(() => import('../pages/Users/Users'));
 
-import Accounts from '../pages/Accounts/Accounts';
+const Accounts = lazy(() => import('../pages/Accounts/Accounts'));
 
-import Transactions from '../pages/Transactions/Transactions';
+const Transactions = lazy(() => import('../pages/Transactions/Transactions'));
 
 //login
-import Login from '../pages/Authentication/Login';
-import Logout from '../pages/Authentication/Logout';
+const Login = lazy(() => import('../pages/Authentication/Login'));
+const Logout = lazy(() => import('../pages/Authentication/Logout'));
 
 // User Profile
-import UserProfile from '../pages/Authentication/UserProfile';
+const UserProfile = lazy(() => import('../pages/Authentication/UserProfile'));
 
 const authProtectedRoutes = [
-	{ path: '/dashboard', component: <DashboardEcommerce /> },
-	{ path: '/index', component: <DashboardEcommerce /> },
+	{
+		path: '/dashboard',
+		component: (
+			<Suspense fallback={<div />}>
+				<DashboardEcommerce />
+			</Suspense>
+		),
+	},
+	{
+		path: '/index',
+		component: (
+			<Suspense fallback={<div />}>
+				<DashboardEcommerce />
+			</Suspense>
+		),
+	},
 
-	{ path: '/roles', component: <Roles /> },
-	{ path: '/users', component: <Users /> },
-	{ path: '/accounts', component: <Accounts /> },
-	{ path: '/transactions', component: <Transactions /> },
+	{
+		path: '/roles',
+		component: (
+			<Suspense fallback={<div />}>
+				<Roles />
+			</Suspense>
+		),
+	},
+	{
+		path: '/users',
+		component: (
+			<Suspense fallback={<div />}>
+				<Users />
+			</Suspense>
+		),
+	},
+	{
+		path: '/accounts',
+		component: (
+			<Suspense fallback={<div />}>
+				<Accounts />
+			</Suspense>
+		),
+	},
+	{
+		path: '/transactions',
+		component: (
+			<Suspense fallback={<div />}>
+				<Transactions />
+			</Suspense>
+		),
+	},
 
 	//User Profile
-	{ path: '/profile', component: <UserProfile /> },
+	{
+		path: '/profile',
+		component: (
+			<Suspense fallback={<div />}>
+				<UserProfile />
+			</Suspense>
+		),
+	},
 
 	// this route should be at the end of all other routes
 	// eslint-disable-next-line react/display-name
@@ -43,8 +92,22 @@ const authProtectedRoutes = [
 
 const publicRoutes = [
 	// Authentication Page
-	{ path: '/logout', component: <Logout /> },
-	{ path: '/login', component: <Login /> },
+	{
+		path: '/logout',
+		component: (
+			<Suspense fallback={<div />}>
+				<Logout />
+			</Suspense>
+		),
+	},
+	{
+		path: '/login',
+		component: (
+			<Suspense fallback={<div />}>
+				<Login />
+			</Suspense>
+		),
+	},
 ];
 
 export { authProtectedRoutes, publicRoutes };
